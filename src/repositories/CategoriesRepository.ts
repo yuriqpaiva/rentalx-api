@@ -16,6 +16,12 @@ class CategoriesRepository {
     return this.categories;
   }
 
+  findByName(name: string): Category | undefined {
+    const category = this.categories.find((category) => name === category.name);
+
+    return category;
+  }
+
   create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category();
 
