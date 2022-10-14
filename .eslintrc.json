@@ -56,7 +56,9 @@
     "import/no-extraneous-dependencies": [
       "error",
       { "devDependencies": ["**/*.spec.js"] }
-    ]
+    ],
+    "@typescript-eslint/no-floating-promises": "off"
+
   },
   "settings": {
     "import/resolver": {

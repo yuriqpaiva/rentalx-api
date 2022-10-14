@@ -17,7 +17,7 @@ class ImportCategoryUseCase {
     return await new Promise((resolve, reject) => {
       const categories: IImportCategory[] = [];
 
-      const stream = fs.createReadStream(file?.path);
+      const stream = fs.createReadStream(file.path);
 
       const parseFile = csvParse();
 
@@ -31,9 +31,11 @@ class ImportCategoryUseCase {
           categories.push({ name, description });
         })
         .on("end", () => {
+          fs.promises.unlink(file.path);
           resolve(categories);
         })
         .on("error", (err) => {
+          fs.promises.unlink(file.path);
           reject(err);
         });
     });
