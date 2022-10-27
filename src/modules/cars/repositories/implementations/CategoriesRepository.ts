@@ -10,17 +10,8 @@ import {
 class CategoriesRepository implements ICategoriesRepository {
   private readonly repository: Repository<Category>;
 
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
+  constructor() {
     this.repository = dataSource.getRepository(Category);
-  }
-
-  public static getInstance(): CategoriesRepository {
-    if (CategoriesRepository.INSTANCE === undefined) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-    return CategoriesRepository.INSTANCE;
   }
 
   async list(): Promise<Category[]> {

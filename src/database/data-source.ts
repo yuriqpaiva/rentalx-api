@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import { DataSource } from "typeorm";
+
+import { Category } from "../modules/cars/entities/Category";
 dotenv.config();
 
 const dataSource = new DataSource({
@@ -11,7 +13,7 @@ const dataSource = new DataSource({
   database: "rentx",
   synchronize: true,
   logging: true,
-  entities: [],
+  entities: [Category],
   subscribers: [],
   migrations: ["./src/database/migrations/*.ts"],
 });
