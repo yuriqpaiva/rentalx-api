@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { deleteFile } from "../../../../utils/file";
 import { User } from "../../entities/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -16,8 +17,12 @@ class UpdateUserAvatarUseCase {
   ) {}
 
   async execute({ user_id, avatar_file }: IRequest): Promise<void> {
-    // Add avatar column into users table
     const user = (await this.usersRepository.findById(user_id)) as User;
+
+    // Deletes the old user avatar
+    if (user.avatar !== null) {
+      await deleteFile(`./tmp/avatar/${user.avatar}`);
+    }
 
     user.avatar = avatar_file;
 
