@@ -20,9 +20,7 @@ class CreateCategoryUseCase {
       name
     );
 
-    console.log(categoryAlreadyExists);
-
-    if (categoryAlreadyExists !== null) {
+    if (categoryAlreadyExists !== null && categoryAlreadyExists !== undefined) {
       throw new AppError("Category already exists");
     }
 
