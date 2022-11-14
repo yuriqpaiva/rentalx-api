@@ -13,11 +13,11 @@ const dataSource = new DataSource({
   username: "postgres",
   password: "docker",
   database: "rentx",
-  synchronize: true,
+  synchronize: false,
   logging: true,
   entities: [Category, Specification, User],
   subscribers: [],
-  migrations: ["./src/database/migrations/*.ts"],
+  migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });
 
 export { dataSource };
