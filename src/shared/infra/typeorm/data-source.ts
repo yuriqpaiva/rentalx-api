@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import { DataSource } from "typeorm";
 
+import { Car } from "@modules/cars/infra/typeorm/entities/Car";
+
 import { User } from "../../../modules/accounts/infra/typeorm/entities/User";
 import { Category } from "../../../modules/cars/infra/typeorm/entities/Category";
 import { Specification } from "../../../modules/cars/infra/typeorm/entities/Specification";
@@ -15,7 +17,7 @@ const dataSource = new DataSource({
   database: "rentx",
   synchronize: false,
   logging: true,
-  entities: [Category, Specification, User],
+  entities: [Category, Specification, User, Car],
   subscribers: [],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });
