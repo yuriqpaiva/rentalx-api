@@ -11,6 +11,7 @@ interface ICarsRepository {
     category_id?: string,
     name?: string
   ) => Promise<Car[] | null | undefined>;
+  findById: (id: string) => Promise<Car | null | undefined>;
 }
 
 export { ICarsRepository };
