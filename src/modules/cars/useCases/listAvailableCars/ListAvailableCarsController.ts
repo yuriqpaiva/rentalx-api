@@ -11,8 +11,6 @@ class ListAvailableCarsController {
       ListAvailableCarsUseCase
     );
 
-    console.log(brand, name, category_id);
-
     const cars = await listAvailableCarsUseCase.execute({
       brand: brand as string,
       name: name as string,
