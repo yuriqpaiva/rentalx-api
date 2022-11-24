@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { CarImage } from "@modules/cars/infra/typeorm/entities/CarImage";
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 import { User } from "../../../modules/accounts/infra/typeorm/entities/User";
 import { Category } from "../../../modules/cars/infra/typeorm/entities/Category";
@@ -18,7 +19,7 @@ const dataSource = new DataSource({
   database: "rentx",
   synchronize: false,
   logging: true,
-  entities: [Category, Specification, User, Car, CarImage],
+  entities: [Category, Specification, User, Car, CarImage, Rental],
   subscribers: [],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });
