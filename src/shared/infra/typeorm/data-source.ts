@@ -18,7 +18,7 @@ const dataSource = new DataSource({
   password: "docker",
   database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
   synchronize: false,
-  logging: true,
+  logging: false,
   entities: [Category, Specification, User, Car, CarImage, Rental],
   subscribers: [],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
