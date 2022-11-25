@@ -8,7 +8,7 @@
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "typeorm-w-source": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/shared/infra/typeorm/data-source.ts",
     "lint": "eslint --fix",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -16,6 +16,7 @@
     "@types/jest": "^29.2.2",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/multer": "^1.4.7",
+    "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.39.0",
@@ -47,6 +48,7 @@
     "multer": "^1.4.5-lts.1",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
+    "supertest": "^6.3.1",
     "swagger-ui-express": "^4.5.0",
     "tsyringe": "^4.7.0",
     "typeorm": "^0.3.10",

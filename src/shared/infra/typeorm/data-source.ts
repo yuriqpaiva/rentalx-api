@@ -16,7 +16,7 @@ const dataSource = new DataSource({
   port: 5432,
   username: "postgres",
   password: "docker",
-  database: "rentx",
+  database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
   synchronize: false,
   logging: true,
   entities: [Category, Specification, User, Car, CarImage, Rental],
