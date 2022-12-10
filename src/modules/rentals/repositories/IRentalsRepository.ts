@@ -10,6 +10,7 @@ interface IRentalsRepository {
     expected_return_date,
   }: ICreateRentalDTO) => Promise<Rental>;
   findById: (id: string) => Promise<Rental | undefined | null>;
+  findByUser: (user_id: string) => Promise<Rental[] | undefined | null>;
 }
 
 export { IRentalsRepository };
