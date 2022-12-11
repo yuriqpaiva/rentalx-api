@@ -1,5 +1,6 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
+import { AppError } from "@shared/errors/AppError";
 
 import { ICarsRepository } from "../ICarsRepository";
 
@@ -70,7 +71,11 @@ class CarsRepositoryInMemory implements ICarsRepository {
   async updateAvailable(id: string, available: boolean): Promise<void> {
     const findIndex = this.cars.findIndex((car) => car.id === id);
 
-    this.cars[findIndex].available = available;
+    if (this.cars[findIndex]?.available) {
+      this.cars[findIndex].available = available;
+    } else {
+      throw new AppError("Car doest not exist");
+    }
   }
 }
 
