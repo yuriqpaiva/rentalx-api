@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { DataSource } from "typeorm";
 
+import { UserTokens } from "@modules/accounts/infra/typeorm/entities/UserTokens";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { CarImage } from "@modules/cars/infra/typeorm/entities/CarImage";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
@@ -19,7 +20,7 @@ const dataSource = new DataSource({
   database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
   synchronize: false,
   logging: false,
-  entities: [Category, Specification, User, Car, CarImage, Rental],
+  entities: [Category, Specification, User, Car, CarImage, Rental, UserTokens],
   subscribers: [],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });
