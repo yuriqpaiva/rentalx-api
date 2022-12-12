@@ -1,5 +1,7 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UserRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersTokensRepositoryInMemory";
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
@@ -8,12 +10,18 @@ import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 let usersRepositoryInMemory: UserRepositoryInMemory;
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let createUserUseCase: CreateUserUseCase;
+let userTokensRepositoryInMemory: UsersTokensRepositoryInMemory;
+let dateProvider: DayjsDateProvider;
 
 describe("Authenticate User", () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UserRepositoryInMemory();
+    userTokensRepositoryInMemory = new UsersTokensRepositoryInMemory();
+    dateProvider = new DayjsDateProvider();
     authenticateUserUseCase = new AuthenticateUserUseCase(
-      usersRepositoryInMemory
+      usersRepositoryInMemory,
+      userTokensRepositoryInMemory,
+      dateProvider
     );
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
   });
@@ -23,7 +31,9 @@ describe("Authenticate User", () => {
   beforeEach(() => {
     jest.resetModules();
     process.env = { ...OLD_ENV };
-    process.env.JWT_SECRET = "d5356b7f5b31b60a734bf0d92f82da71";
+    process.env.JWT_SECRET_TOKEN = "d5356b7f5b31b60a734bf0d92f82da71";
+    process.env.JWT_SECRET_REFRESH_TOKEN =
+      "SgvVyoaZgqtnMtync/hbPgW9yy5fgOTM4HVhO5O/9e9vN99xIJtcl2elExN8oBtf";
   });
 
   afterAll(() => {

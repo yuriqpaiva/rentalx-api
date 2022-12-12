@@ -8,7 +8,7 @@
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "typeorm-w-source": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/shared/infra/typeorm/data-source.ts",
     "lint": "eslint --fix",
-    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

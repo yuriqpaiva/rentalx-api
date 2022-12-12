@@ -22,7 +22,10 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub: user_id } = verify(token, process.env.JWT_SECRET!) as IPayload;
+    const { sub: user_id } = verify(
+      token,
+      process.env.JWT_SECRET_TOKEN!
+    ) as IPayload;
 
     const usersRepository = new UsersRepository();
     const user = await usersRepository.findById(user_id);
