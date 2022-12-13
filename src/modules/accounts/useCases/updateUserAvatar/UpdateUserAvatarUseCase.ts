@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { deleteFile } from "@utils/file";
+import { IStorageProvider } from "@shared/container/providers/StorageProvider/IStorageProvider";
 
 interface IRequest {
   user_id: string;
@@ -13,7 +13,9 @@ interface IRequest {
 class UpdateUserAvatarUseCase {
   constructor(
     @inject("UsersRepository")
-    private readonly usersRepository: IUsersRepository
+    private readonly usersRepository: IUsersRepository,
+    @inject("StorageProvider")
+    private readonly storageProvider: IStorageProvider
   ) {}
 
   async execute({ user_id, avatar_file }: IRequest): Promise<void> {
@@ -21,8 +23,10 @@ class UpdateUserAvatarUseCase {
 
     // Deletes the old user avatar
     if (user.avatar !== null) {
-      await deleteFile(`./tmp/avatar/${user.avatar}`);
+      await this.storageProvider.delete(user.avatar, "avatar");
     }
+
+    await this.storageProvider.save(avatar_file, "avatar");
 
     user.avatar = avatar_file;
 
