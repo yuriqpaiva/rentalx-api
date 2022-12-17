@@ -17,8 +17,8 @@ class SendForgotPasswordMailUseCase {
     private readonly usersTokenRepository: IUsersTokenRepository,
     @inject("DayjsDateProvider")
     private readonly dateProvider: IDateProvider,
-    @inject("EtherealMailProvider")
-    private readonly etherealMailProvider: IMailProvider
+    @inject("MailProvider")
+    private readonly mailProvider: IMailProvider
   ) {}
 
   async execute(email: string): Promise<void> {
@@ -51,7 +51,7 @@ class SendForgotPasswordMailUseCase {
       link: `${process.env.FORGOT_MAIL_URL as string}${token}`,
     };
 
-    await this.etherealMailProvider.sendMail(
+    await this.mailProvider.sendMail(
       email,
       "Recuperação de senha",
       variables,
